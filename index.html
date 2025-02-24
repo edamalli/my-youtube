@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>my YouTube Clone</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>My YouTube Clone</h1>
+
+    <!-- Upload Form -->
+    <input type="file" id="videoUpload" accept="video/*">
+    <button onclick="uploadVideo()">Upload</button>
+
+    <!-- Video List -->
+    <h2>Uploaded Videos</h2>
+    <div id="videoList"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+<style>body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+video {
+    width: 80%;
+    max-width: 600px;
+    margin-top: 10px;
+}
+</style>
+<script>function uploadVideo() {
+    let input = document.getElementById('videoUpload');
+    let file = input.files[0];
+
+    if (file) {
+        let videoURL = URL.createObjectURL(file);
+        displayVideo(videoURL);
+    }
+}
+
+function displayVideo(videoURL) {
+    let videoList = document.getElementById('videoList');
+
+    let videoElement = document.createElement('video');
+    videoElement.src = videoURL;
+    videoElement.controls = true;
+
+    videoList.appendChild(videoElement);
+}
+</script>
